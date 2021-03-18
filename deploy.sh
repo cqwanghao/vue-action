@@ -23,7 +23,7 @@ git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
 # git remote add origin https://github.com/cqwanghao/vue-action.git
-git branch -M master
+# git branch -M master
 git push -f https://github.com/cqwanghao/vue-action.git master:gh-pages
 
 cd -
