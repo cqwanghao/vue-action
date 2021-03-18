@@ -14,7 +14,7 @@ npm run docs:build
 
 # 如果是发布到自定义域名
 # echo 'www.example.com' > CNAME
-
+git pull
 git add .
 git commit -m 'deploy'
 
