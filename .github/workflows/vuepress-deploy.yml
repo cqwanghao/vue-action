@@ -7,11 +7,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
+    # 运行构建脚本
+    - name: Build VuePress site
+      run: yarn && yarn docs:build
+
     - name: vuepress-deploy
-      uses: testthedocs/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        TARGET_REPO: cqwanghao/vue-action
-        TARGET_BRANCH: gh_pages
-        BUILD_SCRIPT: yarn && yarn docs:build
-        BUILD_DIR: docs/.vuepress/dist/
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          # 部署到 gh-pages 分支
+          BRANCH: gh-pages
+          # 部署目录为 VuePress 的默认输出目录
+          FOLDER: docs/.vuepress/dist
+    # env:
+    #   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+    #   TARGET_REPO: cqwanghao/vue-action
+    #   TARGET_BRANCH: gh_pages
+    #   BUILD_SCRIPT: yarn && yarn docs:build
+    #   BUILD_DIR: docs/.vuepress/dist/
