@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>基于 vuepress 搭建文档教程 + 自动化部署 GitHub Actions | github actions文档自动化部署</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/vue-action/assets/css/0.styles.bd397358.css" as="style"><link rel="preload" href="/vue-action/assets/js/app.a3537f37.js" as="script"><link rel="preload" href="/vue-action/assets/js/2.0c35f5bd.js" as="script"><link rel="preload" href="/vue-action/assets/js/3.a9de6008.js" as="script"><link rel="prefetch" href="/vue-action/assets/js/4.d6c30811.js"><link rel="prefetch" href="/vue-action/assets/js/5.2ad20efa.js"><link rel="prefetch" href="/vue-action/assets/js/6.6abf1883.js"><link rel="prefetch" href="/vue-action/assets/js/7.33832bb2.js">
+    <link rel="stylesheet" href="/vue-action/assets/css/0.styles.bd397358.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vue-action/" aria-current="page" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">github actions文档自动化部署</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="基于-vuepress-搭建文档教程-自动化部署-github-actions"><a href="#基于-vuepress-搭建文档教程-自动化部署-github-actions" class="header-anchor">#</a> 基于 vuepress 搭建文档教程 + 自动化部署 GitHub Actions</h1> <h2 id="介绍"><a href="#介绍" class="header-anchor">#</a> 介绍</h2> <p>用VuePress搭建一个文档网站并使用<a href="https://docs.github.com/en/actions" target="_blank" rel="noopener noreferrer">GitHub Actions<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>部署到<a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>。</p> <h2 id="搭建文档"><a href="#搭建文档" class="header-anchor">#</a> 搭建文档</h2> <ol><li>Vue初始化项目</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code>vue create vue-action <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">cd</span> vue-action
+</code></pre></div><ol start="2"><li>将 VuePress 安装为本地依赖</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">yarn</span> <span class="token function">add</span> -D vuepress <span class="token comment"># npm install -D vuepress</span>
+</code></pre></div><ol start="3"><li>创建文档</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">mkdir</span> docs <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> <span class="token string">'# Hello VuePress'</span> <span class="token operator">&gt;</span> docs/README.md
+</code></pre></div><ol start="4"><li>在 package.json 中添加一些 scripts</li></ol> <div class="language-json extra-class"><pre class="language-json"><code><span class="token punctuation">{</span>
+  <span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;docs:dev&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress dev docs&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;docs:build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vuepress build docs&quot;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ol start="5"><li>在本地启动服务器</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">yarn</span> docs:dev <span class="token comment"># npm run docs:dev</span>
+</code></pre></div><p>VuePress 会在 http://localhost:8080/vue-action/ 启动一个热重载的开发服务器。</p> <h2 id="部署"><a href="#部署" class="header-anchor">#</a> 部署</h2> <ol><li><p>在GitHub上创建一个仓库
+<img src="/vue-action/assets/img/1.3b0d4128.png" alt="创建GitHub仓库"></p></li> <li><p>在 docs/.vuepress/config.js 中设置正确的 base
+在 docs/.vuepress 文件夹下创建 config.js</p></li></ol> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// config.js</span>
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+  dest<span class="token operator">:</span> <span class="token string">'./docs/.vuepress/dist'</span><span class="token punctuation">,</span> <span class="token comment">// vuepress build 的输出目录</span>
+  base<span class="token operator">:</span> <span class="token string">'/vue-action/'</span><span class="token punctuation">,</span> <span class="token comment">// 部署站点的基础路径</span>
+  title<span class="token operator">:</span> <span class="token string">'github actions文档自动化部署'</span><span class="token punctuation">,</span>  <span class="token comment">// 网站的标题，它将会被用作所有页面标题的前缀。</span>
+<span class="token punctuation">}</span>
+</code></pre></div><ol start="3"><li>配置.sh脚本
+在项目根目录中，创建一个如下的<code>deploy.sh</code>文件</li></ol> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token shebang important">#!/usr/bin/env sh</span>
+
+<span class="token comment"># 确保脚本抛出遇到的错误</span>
+<span class="token builtin class-name">set</span> -e
+
+<span class="token comment"># 生成静态文件</span>
+<span class="token function">npm</span> run docs:build
+
+<span class="token comment"># 进入生成的文件夹</span>
+<span class="token builtin class-name">cd</span> docs/.vuepress/dist
+
+<span class="token comment"># 如果是发布到自定义域名</span>
+<span class="token comment"># echo 'www.example.com' &gt; CNAME</span>
+
+<span class="token function">git</span> init
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span>
+<span class="token function">git</span> commit -m <span class="token string">'deploy'</span>
+
+<span class="token comment"># 如果发布到 https://&lt;USERNAME&gt;.github.io/vue-action</span>
+<span class="token comment"># git push -f https://github.com/&lt;USERNAME&gt;/vue-action.git master</span>
+
+<span class="token comment"># 如果发布到 https://&lt;USERNAME&gt;.github.io/&lt;REPO&gt;</span>
+<span class="token function">git</span> remote <span class="token function">add</span> origin https://github.com/cqwanghao/vue-action.git
+<span class="token function">git</span> branch -M master
+<span class="token function">git</span> push -f https://github.com/cqwanghao/vue-action.git master:gh-pages
+
+<span class="token builtin class-name">cd</span> -
+</code></pre></div><ol start="4"><li>用sh脚本部署
+打开<code>package.json</code>下新增一条命令</li></ol> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">&quot;deploy&quot;</span><span class="token operator">:</span> <span class="token string">&quot;bash deploy.sh&quot;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>打开控制台执行</p> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token function">npm</span> run deploy
+</code></pre></div><ol start="5"><li>设置仓库<code>GitHub Pages</code>访问路径
+现在代码已经推送到远程仓库的gh-pages分支下,接下来我们需要设置博客的访问路径，点击右上角的Settings按钮进入设置。
+<img src="/vue-action/assets/img/2.1fdfa9b2.png" alt="创建GitHub仓库"></li></ol> <p>选择目标分支为gh-pages,根目录为root
+<img src="/vue-action/assets/img/3.c7635c39.png" alt="创建GitHub仓库"></p> <p>稍等几分钟后访问<a href="https://cqwanghao.github.io/vue-action/" target="_blank" rel="noopener noreferrer">https://cqwanghao.github.io/vue-action/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>此时发现我们的博客已经部署到Github Pages了。
+到这里如果你只是希望你的博客可以随时在互联网被访问到，只需要在写完文章之后去执行 npm run deploy 这行命令就可以了。</p> <h2 id="使用-github-actions-自动部署"><a href="#使用-github-actions-自动部署" class="header-anchor">#</a> 使用 Github Actions 自动部署</h2> <p>现在我们写一篇文章并且发布到 GitHub Pags 需要手动执行sh脚本,使用GitHub Actions 可以帮助我们简化流程，让写完一篇文章后只需要将代码上传至 GitHub 就能帮我们自动构建部署到线上。</p> <p>GitHub Actions 有一些自己的术语。
+1.workflow （工作流程）：持续集成一次运行的过程，就是一个 workflow。</p> <p>2.job （任务）：一个 workflow 由一个或多个 jobs 构成，含义是一次持续集成的运行，可以完成多个任务。</p> <p>3.step（步骤）：每个 job 由多个 step 构成，一步步完成。</p> <p>4.action （动作）：每个 step 可以依次执行一个或多个命令（action）。</p> <p>想要了解更多Github Actions知识可以浏览官方<a href="https://docs.github.com/cn/actions/quickstart" target="_blank" rel="noopener noreferrer">GitHub Actions快速入门<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>,或者<a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener noreferrer">阮一峰老师的GitHub Actions 入门教程<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h2 id="创建个人访问令牌"><a href="#创建个人访问令牌" class="header-anchor">#</a> 创建个人访问令牌</h2> <ol><li><p>在任何页面的右上角，单击您的个人资料照片，然后单击 Settings（设置）
+<img src="/vue-action/assets/img/4.8e8fda99.png" alt="创建GitHub仓库"></p></li> <li><p>在左侧边栏中，单击 Developer settings。
+<img src="/vue-action/assets/img/5.d57adea8.png" alt="创建GitHub仓库"></p></li> <li><p>在左侧边栏中，单击 Personal access tokens（个人访问令牌）=&gt; Generate new token（生成新令牌）。
+<img src="/vue-action/assets/img/6.31c99b02.png" alt="创建GitHub仓库"></p></li> <li><p>给令牌一个描述性名称。
+令牌名字一定要叫：<code>ACCESS_TOKEN</code></p></li> <li><p>选择要授予此令牌的作用域或权限。 要使用令牌从命令行访问仓库，请选择 repo（仓库）。
+<img src="/vue-action/assets/img/7.6c392824.png" alt="创建GitHub仓库"></p></li> <li><p>单击 Generate token（生成令牌）。</p></li> <li><p>单击复制将令牌复制到剪贴板。 出于安全原因，离开此页面后，您将无法再次看到令牌。</p></li></ol> <h2 id="编写-workflow-文件"><a href="#编写-workflow-文件" class="header-anchor">#</a> 编写 workflow 文件</h2> <p>创建.github/workflows/vuepress-deploy.yml文件</p> <div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> docs
+
+<span class="token key atrule">on</span><span class="token punctuation">:</span>
+  <span class="token comment"># 每当 push 到 master 分支时触发部署</span>
+  <span class="token key atrule">push</span><span class="token punctuation">:</span>
+    <span class="token key atrule">branches</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>master<span class="token punctuation">]</span>
+  <span class="token comment"># 手动触发部署</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span>
+
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">docs</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token comment"># “最近更新时间” 等 git 日志相关信息，需要拉取全部提交记录</span>
+          <span class="token key atrule">fetch-depth</span><span class="token punctuation">:</span> <span class="token number">0</span>
+
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Setup Node.js
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/setup<span class="token punctuation">-</span>node@v1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token comment"># 选择要使用的 node 版本</span>
+          <span class="token key atrule">node-version</span><span class="token punctuation">:</span> <span class="token string">&quot;14&quot;</span>
+
+      <span class="token comment"># 缓存 node_modules</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Cache dependencies
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/cache@v2
+        <span class="token key atrule">id</span><span class="token punctuation">:</span> yarn<span class="token punctuation">-</span>cache
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">path</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+            **/node_modules</span>
+          <span class="token key atrule">key</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> runner.os <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">-</span>yarn<span class="token punctuation">-</span>$<span class="token punctuation">{</span><span class="token punctuation">{</span> hashFiles('<span class="token important">**/yarn.lock')</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token key atrule">restore-keys</span><span class="token punctuation">:</span> <span class="token punctuation">|</span><span class="token scalar string">
+            ${{ runner.os }}-yarn-</span>
+
+      <span class="token comment"># 如果缓存没有命中，安装依赖</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Install dependencies
+        <span class="token key atrule">if</span><span class="token punctuation">:</span> steps.yarn<span class="token punctuation">-</span>cache.outputs.cache<span class="token punctuation">-</span>hit <span class="token tag">!=</span> 'true'
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> yarn
+
+      <span class="token comment"># 运行构建脚本</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build VuePress site
+        <span class="token key atrule">run</span><span class="token punctuation">:</span> yarn docs<span class="token punctuation">:</span>build
+
+      <span class="token comment"># 查看 workflow 的文档来获取更多信息</span>
+      <span class="token comment"># @see https://github.com/crazy-max/ghaction-github-pages</span>
+      <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Deploy to GitHub Pages
+        <span class="token key atrule">uses</span><span class="token punctuation">:</span> JamesIves/github<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span>action@3.7.1
+        <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">ACCESS_TOKEN</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.ACCESS_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token comment"># 部署到 gh-pages 分支</span>
+          <span class="token key atrule">BRANCH</span><span class="token punctuation">:</span> gh<span class="token punctuation">-</span>pages
+          <span class="token comment"># 部署目录为 VuePress 的默认输出目录</span>
+          <span class="token key atrule">FOLDER</span><span class="token punctuation">:</span> docs/.vuepress/dist
+</code></pre></div><div class="language-yml extra-class"><pre class="language-yml"><code><span class="token key atrule">name</span><span class="token punctuation">:</span> Build and Deploy
+<span class="token key atrule">on</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>push<span class="token punctuation">]</span>
+<span class="token key atrule">jobs</span><span class="token punctuation">:</span>
+  <span class="token key atrule">build-and-deploy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest
+    <span class="token key atrule">steps</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Checkout
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@master
+
+    <span class="token comment"># 运行构建脚本</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> Build VuePress site
+      <span class="token key atrule">run</span><span class="token punctuation">:</span> yarn <span class="token important">&amp;&amp;</span> yarn docs<span class="token punctuation">:</span>build
+
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> vuepress<span class="token punctuation">-</span>deploy
+      <span class="token key atrule">uses</span><span class="token punctuation">:</span> JamesIves/github<span class="token punctuation">-</span>pages<span class="token punctuation">-</span>deploy<span class="token punctuation">-</span>action@3.7.1
+      <span class="token key atrule">with</span><span class="token punctuation">:</span>
+          <span class="token key atrule">ACCESS_TOKEN</span><span class="token punctuation">:</span> $<span class="token punctuation">{</span><span class="token punctuation">{</span> secrets.ACCESS_TOKEN <span class="token punctuation">}</span><span class="token punctuation">}</span>
+          <span class="token comment"># 部署到 gh-pages 分支</span>
+          <span class="token key atrule">BRANCH</span><span class="token punctuation">:</span> gh<span class="token punctuation">-</span>pages
+          <span class="token comment"># 部署目录为 VuePress 的默认输出目录</span>
+          <span class="token key atrule">FOLDER</span><span class="token punctuation">:</span> docs/.vuepress/dist
+    <span class="token comment"># env:</span>
+    <span class="token comment">#   ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}</span>
+    <span class="token comment">#   TARGET_REPO: cqwanghao/vue-action</span>
+    <span class="token comment">#   TARGET_BRANCH: gh_pages</span>
+    <span class="token comment">#   BUILD_SCRIPT: yarn &amp;&amp; yarn docs:build</span>
+    <span class="token comment">#   BUILD_DIR: docs/.vuepress/dist/</span>
+</code></pre></div><p>以上代码主要配置内容如下:</p> <ol><li><p>branches 代表git push 触发flow的分支名称，如果你的分支不是master请修改正确。</p></li> <li><p>run 表示运行命令，若没有修改的话就是 yarn docs:build。</p></li> <li><p>ACCESS_TOKEN 读取GitHub仓库之前我们设置的 ACCESS_TOKEN，名称一定要与之前设置的相同。</p></li> <li><p>BRANCH 部署到 gh-pages 分支下。</p></li> <li><p>FOLDER 部署目录,如果没有修改默认配置就是 docs/.vuepress/dist。</p></li></ol> <p>完成以上配置，下次push代码的时候，就会自动开启构建。</p> <p>尝试push代码，回到GitHub上点击actions,发现项目已经在自动构建了。
+<img src="/vue-action/assets/img/8.27b0ee30.png" alt="创建GitHub仓库"></p> <p>点击进入查看部署情况。
+<img src="/vue-action/assets/img/9.b57f18b1.png" alt="创建GitHub仓库"></p> <p>部署成功，如果构建失败GitHub会发送一封邮件到你的邮箱。</p> <h2 id="搭建遇到的问题"><a href="#搭建遇到的问题" class="header-anchor">#</a> 搭建遇到的问题</h2> <ol><li><p>如果你打算发布到 https://<code>&lt;USERNAME&gt;</code>.github.io/vue-action， 则需要配置 .vuepress/config.js base 属性,因为 base 默认是 &quot;/&quot;,应该设置为&quot;/vue-action/&quot;。</p></li> <li><p>发布到线上后发现css样式丢失，经查看发现访问路径发生404的有可能是项目引用路径错误，本文没有修改过打包路径，用的是默认路径 docs/.vuepress/dist，如不一致请修改。</p></li> <li><p>本文所使用的actions版本是v3，以往教程中所讲到的使用的是JamesIves/github-pages-deploy-action v2版本，新版本语法已经发生了变化，如果继续使用就会发生错误。</p></li> <li><p>ACCESS_TOKEN 一定要和github上的sectets上的名称相同。</p></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/vue-action/assets/js/app.a3537f37.js" defer></script><script src="/vue-action/assets/js/2.0c35f5bd.js" defer></script><script src="/vue-action/assets/js/3.a9de6008.js" defer></script>
+  </body>
+</html>

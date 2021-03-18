@@ -1,10 +1,10 @@
-# 基于 vuepress 搭建博客教程 + 自动化部署 GitHub Actions
+# 基于 vuepress 搭建文档教程 + 自动化部署 GitHub Actions
 
 ## 介绍
 
-用官方的话来说`VuePress`是一款以`Vue`驱动的静态网站生成器,它的诞生初衷是为了支持`Vue`及其子项目的文档需求。由于vuepress支持自定义开发主题所以很多人拿它来写博客，下面我会用VuePress搭建一个极简的博客网站并使用[GitHub Actions](https://docs.github.com/en/actions)部署到[GitHub Pages](https://pages.github.com/)。
+用VuePress搭建一个文档网站并使用[GitHub Actions](https://docs.github.com/en/actions)部署到[GitHub Pages](https://pages.github.com/)。
 
-## 搭建博客
+## 搭建文档
 
 
 1. Vue初始化项目
