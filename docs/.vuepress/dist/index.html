@@ -8,7 +8,7 @@
     
     <meta name="description" content="">
     
-    <link rel="preload" href="/vue-action/assets/css/0.styles.bd397358.css" as="style"><link rel="preload" href="/vue-action/assets/js/app.a51a8cfc.js" as="script"><link rel="preload" href="/vue-action/assets/js/2.0c35f5bd.js" as="script"><link rel="preload" href="/vue-action/assets/js/3.a9de6008.js" as="script"><link rel="prefetch" href="/vue-action/assets/js/4.d6c30811.js"><link rel="prefetch" href="/vue-action/assets/js/5.2ad20efa.js"><link rel="prefetch" href="/vue-action/assets/js/6.6abf1883.js"><link rel="prefetch" href="/vue-action/assets/js/7.33832bb2.js">
+    <link rel="preload" href="/vue-action/assets/css/0.styles.bd397358.css" as="style"><link rel="preload" href="/vue-action/assets/js/app.a0d4dc39.js" as="script"><link rel="preload" href="/vue-action/assets/js/2.0c35f5bd.js" as="script"><link rel="preload" href="/vue-action/assets/js/3.a9de6008.js" as="script"><link rel="prefetch" href="/vue-action/assets/js/4.d6c30811.js"><link rel="prefetch" href="/vue-action/assets/js/5.2ad20efa.js"><link rel="prefetch" href="/vue-action/assets/js/6.6abf1883.js"><link rel="prefetch" href="/vue-action/assets/js/7.33832bb2.js">
     <link rel="stylesheet" href="/vue-action/assets/css/0.styles.bd397358.css">
   </head>
   <body>
@@ -158,6 +158,6 @@ module<span class="token punctuation">.</span>exports <span class="token operato
 </code></pre></div><p>以上代码主要配置内容如下:</p> <ol><li><p>branches 代表git push 触发flow的分支名称，如果你的分支不是master请修改正确。</p></li> <li><p>run 表示运行命令，若没有修改的话就是 yarn docs:build。</p></li> <li><p>ACCESS_TOKEN 读取GitHub仓库之前我们设置的 ACCESS_TOKEN，名称一定要与之前设置的相同。</p></li> <li><p>BRANCH 部署到 gh-pages 分支下。</p></li> <li><p>FOLDER 部署目录,如果没有修改默认配置就是 docs/.vuepress/dist。</p></li></ol> <p>完成以上配置，下次push代码的时候，就会自动开启构建。</p> <p>尝试push代码，回到GitHub上点击actions,发现项目已经在自动构建了。
 <img src="/vue-action/assets/img/8.27b0ee30.png" alt="创建GitHub仓库"></p> <p>点击进入查看部署情况。
 <img src="/vue-action/assets/img/9.b57f18b1.png" alt="创建GitHub仓库"></p> <p>部署成功，如果构建失败GitHub会发送一封邮件到你的邮箱。</p> <h2 id="搭建遇到的问题"><a href="#搭建遇到的问题" class="header-anchor">#</a> 搭建遇到的问题</h2> <ol><li><p>如果你打算发布到 https://<code>&lt;USERNAME&gt;</code>.github.io/vue-action， 则需要配置 .vuepress/config.js base 属性,因为 base 默认是 &quot;/&quot;,应该设置为&quot;/vue-action/&quot;。</p></li> <li><p>发布到线上后发现css样式丢失，经查看发现访问路径发生404的有可能是项目引用路径错误，本文没有修改过打包路径，用的是默认路径 docs/.vuepress/dist，如不一致请修改。</p></li> <li><p>本文所使用的actions版本是v3，以往教程中所讲到的使用的是JamesIves/github-pages-deploy-action v2版本，新版本语法已经发生了变化，如果继续使用就会发生错误。</p></li> <li><p>ACCESS_TOKEN 一定要和github上的sectets上的名称相同。</p></li></ol></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
-    <script src="/vue-action/assets/js/app.a51a8cfc.js" defer></script><script src="/vue-action/assets/js/2.0c35f5bd.js" defer></script><script src="/vue-action/assets/js/3.a9de6008.js" defer></script>
+    <script src="/vue-action/assets/js/app.a0d4dc39.js" defer></script><script src="/vue-action/assets/js/2.0c35f5bd.js" defer></script><script src="/vue-action/assets/js/3.a9de6008.js" defer></script>
   </body>
 </html>
