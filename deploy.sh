@@ -26,4 +26,4 @@ git commit -m 'deploy'
 # git branch -M master
 git push -f https://github.com/cqwanghao/vue-action.git master:gh-pages
 
-cd -
+# cd -
